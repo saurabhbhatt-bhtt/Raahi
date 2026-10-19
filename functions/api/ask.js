@@ -46,7 +46,8 @@ export async function onRequestPost({ request, env }) {
       temperature: 0.45
     });
 
-    const reply = typeof result?.response === "string" ? result.response.trim() : "";
+    const candidate = result?.response ?? result?.choices?.[0]?.message?.content ?? result?.output_text;
+    const reply = typeof candidate === "string" ? candidate.trim() : "";
     if (!reply) return json({ error: "I couldn’t prepare an answer just now. Please try again in a moment." }, 502);
 
     return json({ reply });
