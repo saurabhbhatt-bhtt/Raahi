@@ -43,7 +43,8 @@ export async function onRequestPost({ request, env }) {
     const result = await env.AI.run(MODEL, {
       messages: [{ role: "system", content: SYSTEM_PROMPT }, ...messages],
       max_completion_tokens: 450,
-      temperature: 0.45
+      temperature: 0.45,
+      chat_template_kwargs: { enable_thinking: false }
     });
 
     const getText = (value) => {
