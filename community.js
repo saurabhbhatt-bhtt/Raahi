@@ -309,7 +309,7 @@ async function refreshFeed() {
   if (feedStatus) feedStatus.textContent = 'Loading stories…';
   const { data, error } = await supabase
     .from('posts')
-    .select('id,author_id,category,destination,title,body,image_url,image_path,like_count,created_at,profiles(display_name,avatar_url)')
+    .select('id,author_id,category,destination,title,body,image_url,image_path,like_count,created_at,profiles!posts_author_id_fkey(display_name,avatar_url)')
     .order('created_at', { ascending: false })
     .limit(40);
   if (error) throw error;
@@ -401,7 +401,7 @@ async function loadComments(post, panel) {
   panel.replaceChildren(node('p', 'comment-item', 'Loading notes…'));
   const { data, error } = await supabase
     .from('comments')
-    .select('id,author_id,body,created_at,profiles(display_name)')
+    .select('id,author_id,body,created_at,profiles!comments_author_id_fkey(display_name)')
     .eq('post_id', post.id)
     .order('created_at', { ascending: true })
     .limit(40);
