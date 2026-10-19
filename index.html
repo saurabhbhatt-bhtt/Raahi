@@ -243,6 +243,130 @@
     @media (prefers-reduced-motion: reduce) {
       *, *::before, *::after { scroll-behavior: auto !important; animation-duration: .01ms !important; transition-duration: .01ms !important; }
     }
+    .community-header { display: flex; align-items: end; justify-content: space-between; gap: 28px; margin-bottom: 27px; }
+    .community-header h2 { max-width: 660px; margin: 10px 0 0; font-family: var(--serif); font-size: clamp(38px, 4.6vw, 56px); font-weight: 500; letter-spacing: -1.9px; line-height: 1.02; }
+    .community-header p { max-width: 620px; margin: 13px 0 0; color: var(--muted); font-size: 13px; line-height: 1.75; }
+    .community-live { flex: 0 0 auto; padding: 10px 13px; border: 1px solid #d7dbd0; border-radius: 999px; color: #45594b; background: #faf9f4; font-size: 10px; font-weight: 750; }
+    .community-live::before { content: ""; display: inline-block; width: 7px; height: 7px; margin: 0 7px 1px 0; border-radius: 50%; background: #718c5b; }
+    .social-layout { display: grid; grid-template-columns: 285px minmax(0, 1fr); align-items: start; gap: 22px; }
+    .social-aside { display: grid; gap: 13px; }
+    .join-panel, .guideline-card, .feed-toolbar, .post-composer, .feed-post, .feed-empty { border: 1px solid #dedfd5; border-radius: 17px; background: var(--white); }
+    .join-panel { padding: 20px; background: #e9e7dc; }
+    .join-kicker { color: #667267; font-size: 10px; font-weight: 850; letter-spacing: 1.2px; }
+    .profile-row { display: flex; align-items: center; gap: 12px; margin: 17px 0; }
+    .profile-avatar { width: 45px; height: 45px; display: grid; place-items: center; flex: 0 0 auto; overflow: hidden; border: 1px solid #d7d8cc; border-radius: 50%; color: #f9f5e9; background: var(--forest); font-family: var(--serif); font-size: 22px; }
+    .profile-avatar img { width: 100%; height: 100%; object-fit: cover; }
+    .profile-name { display: block; color: var(--forest); font-size: 13px; font-weight: 800; overflow-wrap: anywhere; }
+    .profile-detail { display: block; margin-top: 4px; color: #788177; font-size: 10px; }
+    .profile-stats { display: flex; gap: 23px; padding: 14px 0; border-top: 1px solid #d7d8cf; border-bottom: 1px solid #d7d8cf; }
+    .profile-stats strong, .profile-stats span { display: block; }
+    .profile-stats strong { color: var(--forest); font-size: 14px; }
+    .profile-stats span { margin-top: 2px; color: #788177; font-size: 9px; }
+    .join-panel .button { width: 100%; margin-top: 14px; }
+    .join-panel .button[hidden] { display: none; }
+    .account-note { margin: 12px 0 0; color: #626e64; font-size: 10px; line-height: 1.55; }
+    .guideline-card { padding: 19px; }
+    .guideline-card h3 { margin: 0 0 12px; font-family: var(--serif); font-size: 20px; font-weight: 500; }
+    .guideline-card ul { display: grid; gap: 9px; margin: 0; padding-left: 18px; color: #59675d; font-size: 11px; line-height: 1.55; }
+    .feed-column { min-width: 0; }
+    .feed-toolbar { display: flex; align-items: center; justify-content: space-between; gap: 14px; padding: 14px 16px; }
+    .feed-title { display: block; color: var(--forest); font-size: 13px; font-weight: 850; }
+    .feed-status { display: block; margin-top: 4px; color: #5d6a60; font-size: 10px; }
+    .feed-toolbar .button { flex: 0 0 auto; padding: 11px 14px; font-size: 10px; }
+    .feed-filters { display: flex; flex-wrap: wrap; gap: 7px; margin: 13px 0; }
+    .filter-chip { min-height: 36px; padding: 8px 11px; border: 1px solid #d9dcd2; border-radius: 999px; color: #59685d; background: transparent; font-size: 10px; font-weight: 750; }
+    .filter-chip:hover, .filter-chip[aria-pressed="true"] { border-color: var(--forest); color: #fff; background: var(--forest); }
+    .post-list { display: grid; gap: 12px; }
+    .post-composer { display: flex; align-items: center; justify-content: space-between; gap: 16px; padding: 14px 16px; }
+    .post-composer p { margin: 0; color: #657267; font-size: 10px; line-height: 1.55; }
+    .post-composer .button { flex: 0 0 auto; padding: 10px 13px; font-size: 9px; }
+    .feed-post { min-width: 0; overflow: hidden; }
+    .feed-post-head { display: flex; align-items: center; gap: 10px; padding: 15px 16px 11px; }
+    .feed-post-head .profile-avatar { width: 36px; height: 36px; font-size: 18px; }
+    .post-byline { min-width: 0; flex: 1; }
+    .post-byline strong { display: block; color: var(--forest); font-size: 11px; overflow-wrap: anywhere; }
+    .post-byline span { display: block; margin-top: 3px; color: #5f6b61; font-size: 10px; }
+    .post-head-actions { display: flex; align-items: center; gap: 7px; }
+    .follow-button, .report-button, .delete-button { min-height: 36px; padding: 7px 10px; border: 1px solid #d9dcd2; border-radius: 999px; color: #526357; background: transparent; font-size: 10px; font-weight: 750; }
+    .follow-button:hover, .follow-button[aria-pressed="true"] { border-color: var(--forest); color: white; background: var(--forest); }
+    .report-button, .delete-button { padding-inline: 8px; color: #7c6256; }
+    .report-button:hover, .delete-button:hover { border-color: #bb6549; color: #8a3c2a; background: #f8eee8; }
+    .post-content { padding: 0 16px 15px; }
+    .post-category { display: inline-flex; padding: 6px 8px; border-radius: 999px; color: #6c5549; background: #f2e7d7; font-size: 9px; font-weight: 850; letter-spacing: .6px; text-transform: uppercase; }
+    .post-content h3 { margin: 10px 0 7px; font-family: var(--serif); font-size: 24px; font-weight: 500; line-height: 1.15; overflow-wrap: anywhere; }
+    .post-destination { margin: 0 0 9px; color: #6b8067; font-size: 10px; font-weight: 800; }
+    .post-body { margin: 0; color: #536158; font-size: 11px; line-height: 1.75; white-space: pre-wrap; overflow-wrap: anywhere; }
+    .post-image { display: block; width: 100%; max-height: 480px; margin: 14px 0 0; border-radius: 12px; object-fit: cover; background: #e5e5da; }
+    .post-actions { display: flex; align-items: center; gap: 8px; padding: 11px 16px; border-top: 1px solid #e8e8e0; }
+    .post-action { min-height: 36px; display: inline-flex; align-items: center; gap: 6px; padding: 7px 9px; border: 0; border-radius: 999px; color: #5b695f; background: transparent; font-size: 10px; font-weight: 750; }
+    .post-action:hover, .post-action[aria-pressed="true"] { color: #9c4a35; background: #f6eae2; }
+    .post-action:disabled { cursor: wait; opacity: .6; }
+    .comment-panel { padding: 12px 16px 15px; border-top: 1px solid #e8e8e0; background: #f8f7f1; }
+    .comment-list { display: grid; gap: 9px; margin-bottom: 11px; }
+    .comment-item { color: #58665b; font-size: 11px; line-height: 1.55; }
+    .comment-item strong { margin-right: 5px; color: var(--forest); }
+    .comment-form { display: flex; gap: 7px; }
+    .comment-form input { flex: 1; min-width: 0; padding: 10px 12px; border: 1px solid #d9dcd2; border-radius: 999px; color: var(--ink); background: #fff; font: inherit; font-size: 10px; }
+    .comment-form button { padding: 9px 12px; border: 0; border-radius: 999px; color: white; background: var(--forest); font-size: 9px; font-weight: 750; }
+    .comment-signin { margin: 0; color: #6d786f; font-size: 9px; }
+    .comment-signin button { padding: 0; border: 0; color: var(--clay); background: none; font: inherit; font-weight: 800; text-decoration: underline; }
+    .feed-empty { padding: 30px 23px; text-align: center; }
+    .feed-empty-mark { width: 40px; height: 40px; display: grid; place-items: center; margin: 0 auto 12px; border-radius: 50%; color: white; background: var(--forest); font-size: 19px; }
+    .feed-empty h3 { margin: 0 0 7px; font-family: var(--serif); font-size: 22px; font-weight: 500; }
+    .feed-empty p { margin: 0; color: #778177; font-size: 10px; line-height: 1.6; }
+    .site-dialog { width: min(460px, calc(100% - 28px)); max-width: 460px; max-height: calc(100dvh - 28px); padding: 0; border: 0; overflow: auto; color: var(--ink); background: transparent; }
+    .site-dialog::backdrop { background: #12221bd1; backdrop-filter: blur(4px); }
+    .dialog-card { position: relative; padding: 29px; border: 1px solid #e4e2d9; border-radius: 21px; background: #fbfaf6; box-shadow: 0 24px 70px #10251c38; }
+    .dialog-close { position: absolute; top: 13px; right: 14px; width: 35px; height: 35px; border: 1px solid #dddcd3; border-radius: 50%; color: #55645a; background: transparent; font-size: 22px; line-height: 1; }
+    .dialog-eyebrow { color: var(--clay); font-size: 10px; font-weight: 850; letter-spacing: 1.35px; text-transform: uppercase; }
+    .dialog-card h2 { margin: 8px 35px 7px 0; font-family: var(--serif); font-size: 31px; font-weight: 500; line-height: 1.05; }
+    .dialog-intro { margin: 0 0 17px; color: #5f6b61; font-size: 11px; line-height: 1.6; }
+    .auth-switch { display: grid; grid-template-columns: 1fr 1fr; gap: 5px; margin: 17px 0; padding: 4px; border-radius: 999px; background: #efeee7; }
+    .auth-switch button { padding: 9px 10px; border: 0; border-radius: 999px; color: #657168; background: transparent; font-size: 10px; font-weight: 750; }
+    .auth-switch button[aria-pressed="true"] { color: white; background: var(--forest); }
+    .dialog-form { display: grid; gap: 12px; }
+    .dialog-field { display: grid; gap: 6px; color: #445349; font-size: 11px; font-weight: 750; }
+    .dialog-field input, .dialog-field select, .dialog-field textarea { width: 100%; min-width: 0; padding: 11px 12px; border: 1px solid #d6d9ce; border-radius: 10px; color: var(--ink); background: #fff; font: inherit; font-size: 12px; }
+    .dialog-field textarea { min-height: 130px; resize: vertical; line-height: 1.6; }
+    .dialog-field input[type="file"] { padding: 8px; font-size: 10px; }
+    .dialog-field small { color: #5e6b61; font-size: 10px; font-weight: 500; line-height: 1.45; }
+    .dialog-form .button { width: 100%; min-height: 43px; font-size: 10px; }
+    .dialog-form .button:disabled { cursor: wait; opacity: .65; transform: none; }
+    .dialog-status { min-height: 16px; margin: 0; color: #52685a; font-size: 10px; line-height: 1.5; }
+    .dialog-status.error { color: #9a3d2e; }
+    .public-post-note { padding: 10px 11px; border-radius: 10px; color: #526056; background: #efeee5; font-size: 10px; line-height: 1.55; }
+    .report-options { display: grid; gap: 8px; }
+    .report-option { display: flex; align-items: center; gap: 9px; padding: 10px; border: 1px solid #dedfd5; border-radius: 10px; background: #fff; font-size: 10px; }
+    .report-option input { accent-color: var(--forest); }
+    @media (max-width: 800px) {
+      .social-layout { grid-template-columns: 240px minmax(0, 1fr); gap: 14px; }
+      .join-panel { padding: 16px; }
+      .community-header { align-items: flex-start; flex-direction: column; gap: 13px; }
+    }
+    @media (max-width: 680px) {
+      .social-layout { grid-template-columns: 1fr; }
+      .social-aside { grid-template-columns: 1fr 1fr; align-items: stretch; }
+      .join-panel, .guideline-card { min-width: 0; }
+      .guideline-card { padding: 15px; }
+      .feed-toolbar { align-items: flex-start; }
+      .feed-toolbar .button { padding: 10px 11px; }
+      .post-content h3 { font-size: 22px; }
+      .dialog-card { padding: 25px 20px; }
+    }
+    @media (max-width: 430px) {
+      .social-aside { grid-template-columns: 1fr; }
+      .feed-toolbar { flex-direction: column; }
+      .feed-toolbar .button { width: 100%; }
+      .feed-filters { flex-wrap: nowrap; overflow-x: auto; padding-bottom: 4px; }
+      .filter-chip { flex: 0 0 auto; }
+      .feed-post-head { align-items: flex-start; padding-inline: 12px; }
+      .feed-post-head .profile-avatar { width: 32px; height: 32px; }
+      .post-head-actions { flex-wrap: wrap; justify-content: flex-end; }
+      .post-content { padding-inline: 12px; }
+      .post-actions { padding-inline: 12px; }
+      .post-composer { align-items: stretch; flex-direction: column; }
+      .post-composer .button { width: 100%; }
+    }
   </style>
 </head>
 <body>
@@ -255,9 +379,9 @@
       <a href="#stays">Stays</a>
       <a href="#adventures">Adventures</a>
       <a href="#circle">Trips</a>
-      <a href="#ask-raahi">Ask Raahi</a>
-      <a href="#shop">Shop</a>
-      <a class="nav-cta" href="#ask-raahi">Ask your travel guide <span aria-hidden="true">↗</span></a>
+      <a href="#stories">Community</a>
+      <a href="#ask-raahi">AI guide</a>
+      <button class="nav-cta" type="button" id="nav-community-button">Join Raahi <span aria-hidden="true">↗</span></button>
     </nav>
   </header>
 
@@ -269,7 +393,7 @@
         <p class="hero-copy">Discover mountain stays and outdoor adventures, meet fellow solo travellers on small group trips, and ask Raahi travel questions along the way.</p>
         <div class="hero-actions">
           <a class="button button-dark" href="#adventures">Explore adventures <span aria-hidden="true">↗</span></a>
-          <a class="button button-quiet" href="#ask-raahi">Ask Raahi <span aria-hidden="true">↓</span></a>
+          <a class="button button-quiet" href="#stories">Meet the community <span aria-hidden="true">↓</span></a>
         </div>
         <div class="hero-small"><span class="hero-stamp" aria-hidden="true">✳</span><span><strong>Outdoor days. Small groups. Real stories.</strong><br>A mountain-first community, being built with travellers.</span></div>
       </div>
@@ -348,34 +472,60 @@
       </div>
     </section>
 
-    <section class="section" id="stories">
-      <div class="shell community">
-        <div class="copy-head">
-          <div class="eyebrow">A community, not a catalogue</div>
-          <h2>Every traveller has a place worth passing on.</h2>
-          <p>Raahi is growing towards traveller profiles, follows, photo diaries, first-hand stay notes and local recommendations—shared by people who’ve actually been there.</p>
-          <div class="social-promise">
-            <div class="promise"><strong>Make your own profile</strong><span>Your routes, your rhythm, your story.</span></div>
-            <div class="promise"><strong>Follow fellow Raahis</strong><span>Find people with a place on your list.</span></div>
-            <div class="promise"><strong>Share a trail note</strong><span>Photos, blogs and practical tips.</span></div>
-            <div class="promise"><strong>Recommend with care</strong><span>Real experiences, clearly labelled.</span></div>
+    <section class="section" id="stories" aria-labelledby="community-title">
+      <div class="shell">
+        <div class="community-header">
+          <div>
+            <div class="eyebrow">Raahi Circle · Community is live</div>
+            <h2 id="community-title">Mountain stories, shared by travellers.</h2>
+            <p>Share a first-hand experience, a photo from the trail, or a place you’d recommend. Follow travellers whose routes feel like yours.</p>
+          </div>
+          <span class="community-live">Open to mountain people</span>
+        </div>
+        <div class="social-layout">
+          <aside class="social-aside" aria-label="Your Raahi community profile and guidelines">
+            <section class="join-panel" aria-labelledby="community-profile-title">
+              <div class="join-kicker">RAAHI CIRCLE · TRAVELLER PROFILE</div>
+              <div class="profile-row">
+                <span class="profile-avatar" id="community-avatar" aria-hidden="true">r</span>
+                <span><strong class="profile-name" id="community-name">Browsing as a guest</strong><small class="profile-detail" id="community-detail">Join to follow and share</small></span>
+              </div>
+              <div class="profile-stats" aria-label="Your community stats">
+                <div><strong id="followers-count">—</strong><span>followers</span></div>
+                <div><strong id="following-count">—</strong><span>following</span></div>
+              </div>
+              <button class="button button-dark" type="button" id="community-primary">Join the community</button>
+              <button class="button button-quiet" type="button" id="community-secondary" hidden>Sign out</button>
+              <p class="account-note" id="account-note">Free to join. Your email stays private; your profile name, posts and photos are public.</p>
+            </section>
+            <aside class="guideline-card" aria-labelledby="guideline-title">
+              <h3 id="guideline-title">Good trail etiquette</h3>
+              <ul>
+                <li>Share first-hand details and label opinions clearly.</li>
+                <li>Keep private contact and live trip details off public posts.</li>
+                <li>Use the report button if a post feels unsafe or misleading.</li>
+              </ul>
+            </aside>
+          </aside>
+          <div class="feed-column">
+            <div class="feed-toolbar">
+              <div><span class="feed-title">The traveller feed</span><span class="feed-status" id="feed-status" role="status" aria-live="polite">Loading stories…</span></div>
+              <button class="button button-dark" type="button" id="create-post-button">＋ Share a story</button>
+            </div>
+            <div class="feed-filters" role="group" aria-label="Filter community stories">
+              <button class="filter-chip" type="button" data-feed-filter="all" aria-pressed="true">All stories</button>
+              <button class="filter-chip" type="button" data-feed-filter="experience" aria-pressed="false">Experiences</button>
+              <button class="filter-chip" type="button" data-feed-filter="destination" aria-pressed="false">Place tips</button>
+              <button class="filter-chip" type="button" data-feed-filter="photo" aria-pressed="false">Photos</button>
+              <button class="filter-chip" type="button" data-feed-filter="gear" aria-pressed="false">Gear</button>
+              <button class="filter-chip" type="button" data-feed-filter="idea" aria-pressed="false">Trip ideas</button>
+            </div>
+            <div class="post-list" id="community-posts" aria-live="polite" aria-busy="true">
+              <div class="feed-empty"><span class="feed-empty-mark" aria-hidden="true">↟</span><h3>Finding the first stories…</h3><p>The feed will appear here.</p></div>
+            </div>
           </div>
         </div>
-        <div class="story-stack" aria-label="Preview of story formats, not real traveller posts">
-          <article class="story-card">
-            <div class="story-thumb"><img src="https://images.unsplash.com/photo-1735909600958-f442498875f9?auto=format&amp;fit=crop&amp;w=400&amp;q=75" alt="" loading="lazy"></div>
-            <div><span class="story-type">Field note · story format</span><h3>A place I’d tell a friend about</h3><p>First-hand tips for the next person taking the same road.</p><span class="preview-label">COMMUNITY PREVIEW · NOT A LIVE POST</span></div><span class="story-mark" aria-hidden="true">↗</span>
-          </article>
-          <article class="story-card">
-            <div class="story-thumb"><img src="https://images.unsplash.com/photo-1573527426230-e1bf3991196b?auto=format&amp;fit=crop&amp;w=400&amp;q=75" alt="" loading="lazy"></div>
-            <div><span class="story-type">Photo diary · story format</span><h3>One frame from the mountains</h3><p>A small moment, a few honest words, and the route behind it.</p><span class="preview-label">COMMUNITY PREVIEW · NOT A LIVE POST</span></div><span class="story-mark" aria-hidden="true">♡</span>
-          </article>
-          <article class="story-card">
-            <div class="story-thumb"><img src="https://images.unsplash.com/photo-1741198793003-87a640fe0e76?auto=format&amp;fit=crop&amp;w=400&amp;q=75" alt="" loading="lazy"></div>
-            <div><span class="story-type">Stay recommendation · story format</span><h3>The host who made me feel welcome</h3><p>Useful details travellers can check before they choose a stay.</p><span class="preview-label">COMMUNITY PREVIEW · NOT A LIVE POST</span></div><span class="story-mark" aria-hidden="true">✳</span>
-          </article>
-          <p class="honesty-line">The cards above show the planned formats. They are not reviews or posts from actual members.</p>
-        </div>
+        <p class="honesty-line">Community posts and photos are public. Stays and activities above are still previews, and there are no live bookings, trip dates or payments yet.</p>
       </div>
     </section>
 
@@ -425,10 +575,96 @@
   <footer>
     <div class="shell">
       <div class="footer-top"><span class="footer-name">RAAHI · MOUNTAIN PEOPLE</span><span>Himachal Pradesh & Uttarakhand, India</span><span class="footer-links"><a href="#stays">Stays</a><a href="#adventures">Adventures</a><a href="#circle">Trips</a><a href="#stories">Community</a></span></div>
-      <p>Raahi is a working name and this page is an early concept. Stay and activity cards are not live listings; trip dates, prices, bookings, community accounts and products are not live. AI answers are planning help only and do not verify live conditions. This page does not collect sign-ups or payments.</p>
+      <p>Raahi is an early community project. Accounts, traveller posts, photos, likes, comments and follows are live. Profile names and posts are public; email addresses are not shown. Stay and activity cards are not live listings, and trip dates, bookings, payments and products are not live. AI answers are planning help only and do not verify live conditions.</p>
       <p class="photo-credits">Regional preview photography via Unsplash: <a href="https://unsplash.com/photos/trees-on-mountain-W5V4qKHaOXU" target="_blank" rel="noopener noreferrer">Nomad Bikers · Kinnaur</a>, <a href="https://unsplash.com/photos/a-small-village-nestled-on-the-side-of-a-mountain-ZtSwHe079vo" target="_blank" rel="noopener noreferrer">Harish Bharti · Bhanera</a>, <a href="https://unsplash.com/photos/houses-nestled-on-a-mountain-with-pine-trees-iHpnEKsrGD4" target="_blank" rel="noopener noreferrer">Atharva Dixit · Kufri</a>, <a href="https://unsplash.com/photos/a-small-village-in-the-middle-of-a-mountain-range-9aWPQGcWnRo" target="_blank" rel="noopener noreferrer">Rowan Heuvel · Dhankar</a>, <a href="https://unsplash.com/photos/a-man-with-a-backpack-walking-up-a-hill-x7xyMAb7onc" target="_blank" rel="noopener noreferrer">Slava Auchynnikau · Himalayas</a>. Images are inspiration, not images of partner stays.</p>
     </div>
   </footer>
+  <dialog class="site-dialog" id="auth-dialog" aria-labelledby="auth-title">
+    <div class="dialog-card">
+      <button class="dialog-close" type="button" data-close-dialog aria-label="Close">×</button>
+      <span class="dialog-eyebrow">A place in the circle</span>
+      <h2 id="auth-title">Join the Raahi community.</h2>
+      <p class="dialog-intro">Create a free traveller profile to share stories, post photos, follow people and join the conversation.</p>
+      <div class="auth-switch" role="group" aria-label="Account action">
+        <button type="button" data-auth-mode="signup" aria-pressed="true">Create account</button>
+        <button type="button" data-auth-mode="signin" aria-pressed="false">Sign in</button>
+      </div>
+      <form class="dialog-form" id="auth-form">
+        <label class="dialog-field" id="signup-name-wrap" for="signup-name">Profile name
+          <input id="signup-name" name="display_name" type="text" minlength="2" maxlength="60" autocomplete="name" required>
+        </label>
+        <label class="dialog-field" for="auth-email">Email
+          <input id="auth-email" name="email" type="email" autocomplete="email" required>
+        </label>
+        <label class="dialog-field" for="auth-password">Password
+          <input id="auth-password" name="password" type="password" minlength="8" autocomplete="new-password" required>
+          <small>Use at least 8 characters. You can change this in your password manager later.</small>
+        </label>
+        <p class="dialog-status" id="auth-status" role="status" aria-live="polite"></p>
+        <button class="button button-dark" id="auth-submit" type="submit">Create my account</button>
+      </form>
+      <p class="public-post-note">Your email stays private. Your profile name, stories and uploaded photos can be seen by anyone. Only share images and details you’re comfortable making public.</p>
+    </div>
+  </dialog>
+  <dialog class="site-dialog" id="post-dialog" aria-labelledby="post-title">
+    <div class="dialog-card">
+      <button class="dialog-close" type="button" data-close-dialog aria-label="Close">×</button>
+      <span class="dialog-eyebrow">Add to the trail journal</span>
+      <h2 id="post-title">Share your mountain story.</h2>
+      <p class="dialog-intro">A useful detail can make someone else’s solo trip easier.</p>
+      <form class="dialog-form" id="post-form">
+        <label class="dialog-field" for="post-category">Story type
+          <select id="post-category" name="category" required>
+            <option value="experience">My experience</option>
+            <option value="destination">Place recommendation</option>
+            <option value="photo">Photo diary</option>
+            <option value="gear">Gear tip</option>
+            <option value="idea">Trip idea</option>
+          </select>
+        </label>
+        <label class="dialog-field" for="post-destination">Place or route
+          <input id="post-destination" name="destination" type="text" maxlength="100" placeholder="e.g. Bir, Himachal" required>
+        </label>
+        <label class="dialog-field" for="post-title-input">Title
+          <input id="post-title-input" name="title" type="text" maxlength="120" placeholder="What would you tell another traveller?" required>
+        </label>
+        <label class="dialog-field" for="post-body">Your story or recommendation
+          <textarea id="post-body" name="body" maxlength="12000" placeholder="Share what you experienced, what worked, and what another traveller should know…" required></textarea>
+          <small><span id="post-char-count">0</span>/12,000 characters</small>
+        </label>
+        <label class="dialog-field" for="post-image">Add a photo (optional)
+          <input id="post-image" name="image" type="file" accept="image/jpeg,image/png,image/webp">
+          <small>JPG, PNG or WebP · up to 5 MB. The image will be public with your post.</small>
+        </label>
+        <p class="dialog-status" id="post-status" role="status" aria-live="polite"></p>
+        <button class="button button-dark" id="post-submit" type="submit">Publish story</button>
+      </form>
+      <p class="public-post-note">Posts are public. Do not include private phone numbers, exact live locations or other sensitive details.</p>
+    </div>
+  </dialog>
+  <dialog class="site-dialog" id="report-dialog" aria-labelledby="report-title">
+    <div class="dialog-card">
+      <button class="dialog-close" type="button" data-close-dialog aria-label="Close">×</button>
+      <span class="dialog-eyebrow">Help keep the circle kind</span>
+      <h2 id="report-title">Report this post.</h2>
+      <p class="dialog-intro">Reports are private and help us review community content.</p>
+      <form class="dialog-form" id="report-form">
+        <fieldset class="report-options" style="border:0;padding:0;margin:0">
+          <legend class="sr-only">Choose a report reason</legend>
+          <label class="report-option"><input type="radio" name="reason" value="unsafe" required> Unsafe or harmful travel advice</label>
+          <label class="report-option"><input type="radio" name="reason" value="harassment"> Harassment or disrespect</label>
+          <label class="report-option"><input type="radio" name="reason" value="misleading"> Misleading recommendation</label>
+          <label class="report-option"><input type="radio" name="reason" value="spam"> Spam or promotion</label>
+          <label class="report-option"><input type="radio" name="reason" value="other"> Something else</label>
+        </fieldset>
+        <label class="dialog-field" for="report-details">Add details (optional)
+          <textarea id="report-details" name="details" maxlength="500" rows="3" placeholder="Help us understand what needs a closer look."></textarea>
+        </label>
+        <p class="dialog-status" id="report-status" role="status" aria-live="polite"></p>
+        <button class="button button-dark" id="report-submit" type="submit">Send private report</button>
+      </form>
+    </div>
+  </dialog>
   <script>
     (() => {
       const form = document.getElementById('ask-form');
@@ -495,5 +731,6 @@
       });
     })();
   </script>
+  <script type="module" src="/community.js"></script>
 </body>
 </html>
