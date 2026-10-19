@@ -46,8 +46,20 @@ export async function onRequestPost({ request, env }) {
       temperature: 0.45
     });
 
-    const candidate = result?.response ?? result?.choices?.[0]?.message?.content ?? result?.output_text;
-    const reply = typeof candidate === "string" ? candidate.trim() : "";
+    const getText = (value) => {
+      if (typeof value === "string") return value.trim();
+      if (Array.isArray(value)) return value.map(getText).filter(Boolean).join("\n");
+      if (value && typeof value === "object") return getText(value.text ?? value.content);
+      return "";
+    };
+    const reply = [
+      result?.response,
+      result?.choices?.[0]?.message?.content,
+      result?.output_text,
+      result?.result?.response,
+      result?.result?.choices?.[0]?.message?.content,
+      result?.text
+    ].map(getText).find(Boolean) || "";
     if (!reply) return json({ error: "I couldn’t prepare an answer just now. Please try again in a moment." }, 502);
 
     return json({ reply });
