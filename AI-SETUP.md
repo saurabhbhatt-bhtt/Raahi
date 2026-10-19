@@ -1,6 +1,6 @@
-# Raahi AI guide ko live kaise karna hai
+# Raahi AI guide setup aur maintenance
 
-Is project mein chat screen aur server-side AI route bana hua hai. AI answer tab dega jab website Cloudflare Pages par deploy ho aur us project mein Workers AI binding `AI` naam se add ho. Is setup mein koi provider API key website code mein nahi rakhni padti.
+Is project mein chat screen aur server-side AI route bana hua hai. Raahi ke Cloudflare Pages production project mein Workers AI binding `AI` configure hai aur binding ke baad deployment successful hui. Is setup mein koi provider API key website code mein nahi rakhni padti. Neeche ke setup steps tab kaam aayenge jab tum naya Cloudflare Pages project ya environment banao.
 
 ## Tumhe kya chahiye
 
