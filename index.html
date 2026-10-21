@@ -575,6 +575,98 @@
       .dock-button.create { color: #07110e; background: #d9f0c7; }
       .feed-toolbar { background: #10211af2; }
     }
+    /* Clean white mountain canvas with motion that supports the content. */
+    :root { --paper: #fbfcfa; --ink: #173b30; --forest: #173b30; --forest-2: #285844; --moss: #77936c; --clay: #c66b4c; --sun: #e9ae6f; --line: #dce4dc; --muted: #6c796f; --white: #ffffff; }
+    body { color: var(--ink); background: #fbfcfa; }
+    .folk-band, .topbar::after, .hero::after, .hero-visual::before, .hero-photo::before, .region-image::before, .activity-section::before, .activity-card::after, .community-header::before { display: none; }
+    .topbar { border-bottom-color: var(--line); background: #fbfcfaeb; }
+    .brand-mark { color: #fff; background: var(--forest); }
+    .brand-word, .nav { color: var(--ink); }
+    .brand-sub { color: var(--muted); }
+    .nav-cta, .button-dark { color: #fff; background: var(--forest); }
+    .nav-cta:hover, .button-dark:hover { color: #fff; background: var(--forest-2); }
+    .button-quiet { border-color: #c8d6c9; color: var(--forest); background: #fff; }
+    .button-quiet:hover { color: #fff; border-color: var(--forest); background: var(--forest); }
+    .hero { margin-top: 25px; padding: 58px 48px 65px; border: 0; border-radius: 28px; background: #f3f7f1; box-shadow: none; }
+    .hero::before { color: var(--clay); }
+    h1, .section-head h2, .community-header h2, .copy-head h2, .assistant-copy h2 { color: var(--ink); font-family: var(--serif); font-weight: 500; letter-spacing: -2px; }
+    h1 em { color: var(--clay); }
+    .hero-copy, .hero-small, .section-head p, .copy-head p { color: var(--muted); }
+    .hero-small strong { color: var(--forest); }
+    .hero-stamp { border-color: #cbd8cb; color: var(--clay); }
+    .hero-photo { box-shadow: none; border-radius: 24px; }
+    .floating-note { border-color: var(--line); color: var(--forest); background: #fffffff2; box-shadow: 0 14px 38px #173b3012; }
+    .floating-note strong { color: var(--forest); }
+    .floating-note small { color: var(--muted); }
+    .ticker { color: var(--forest); background: #fff; border-color: var(--line); }
+    .region-card, .activity-card, .feed-post, .feed-toolbar, .post-composer, .feed-empty, .guideline-card, .chat-panel { border-color: var(--line); background: #fff; box-shadow: 0 10px 30px rgba(24, 60, 47, .06); }
+    .region-body h3, .activity-card h3, .story-card h3, .feed-empty h3 { color: var(--forest); }
+    .region-body p, .activity-card p, .honesty-line, .activity-disclaimer { color: var(--muted); }
+    .region-foot { border-top-color: var(--line); }
+    .activity-section { background: #f6f8f4; }
+    .activity-icon { color: #fff; background: var(--forest); }
+    .trip-section { background: var(--forest); }
+    .trip-copy > p, .trip-point { color: #d3e0d4; }
+    .button-cream { color: var(--forest); background: #fff; }
+    .community-header { border-color: #dbe7d9; background: #eef5eb; box-shadow: none; }
+    .community-header::after { color: var(--clay); }
+    .community-header p { color: var(--muted); }
+    .community-live { border-color: #c7d8c8; color: var(--forest); background: #fff; }
+    .join-panel { border-color: #dce7db; background: #f8faf6; }
+    .join-kicker, .profile-detail, .profile-bio, .account-note { color: var(--muted); }
+    .profile-name, .profile-stats strong, .feed-title, .post-byline strong { color: var(--forest); }
+    .profile-avatar { border-color: #c6d8c8; color: #fff; background: var(--forest); }
+    .profile-stats { border-color: var(--line); }
+    .profile-settings-button, .filter-chip, .follow-button, .report-button, .delete-button { border-color: #cfdbcf; color: var(--forest); background: #fff; }
+    .profile-settings-button:hover, .filter-chip:hover, .filter-chip[aria-pressed="true"], .follow-button:hover, .follow-button[aria-pressed="true"] { color: #fff; border-color: var(--forest); background: var(--forest); }
+    .feed-status, .post-byline span, .post-destination, .post-body, .comment-item { color: var(--muted); }
+    .post-category { color: #63301f; background: #f5d8bd; }
+    .post-actions, .comment-panel { border-color: var(--line); background: #f8faf7; }
+    .post-action { color: var(--forest); }
+    .comment-form input, .chat-form input { color: var(--ink); background: #fff; border-color: #ccd9cd; }
+    .assistant-section { background: #eef5eb; }
+    .assistant-copy p, .assistant-disclaimer { color: var(--muted); }
+    .shop-panel { border-color: var(--line); color: var(--forest); background: #fff; }
+    .shop-text p { color: var(--muted); }
+    .final-cta, footer { border-color: var(--line); color: var(--muted); }
+    .final-cta h2, .footer-name { color: var(--forest); }
+    .site-dialog::backdrop { background: #18352d66; backdrop-filter: blur(6px); }
+    .dialog-card { border-color: var(--line); color: var(--ink); background: #fff; box-shadow: 0 30px 90px #173b3030; }
+    .dialog-close { border-color: var(--line); color: var(--forest); }
+    .dialog-intro, .dialog-field, .dialog-field small, .public-post-note { color: var(--muted); }
+    .auth-switch { background: #eef3ed; }
+    .auth-switch button { color: var(--muted); }
+    .auth-switch button[aria-pressed="true"] { color: #fff; background: var(--forest); }
+    .dialog-field input, .dialog-field select, .dialog-field textarea { border-color: #cbd8cc; color: var(--ink); background: #fff; }
+    .public-post-note { background: #f5f8f4; }
+    .account-popover { border-color: var(--line); background: #fff; box-shadow: 0 20px 45px #173b3026; }
+    .account-popover-name { color: var(--forest); }
+    .account-menu-button { color: var(--forest); }
+    .account-menu-button:hover { color: #fff; background: var(--forest); }
+
+    /* Gentle entrance motion while the visitor explores sections. */
+    main > section, main > .shell { opacity: 0; transform: translateY(28px); transition: opacity .75s ease, transform .75s cubic-bezier(.2,.72,.2,1); }
+    main > section.in-view, main > .shell.in-view { opacity: 1; transform: translateY(0); }
+    .region-card, .activity-card, .feed-post { transition: transform .28s ease, box-shadow .28s ease; }
+    .region-card:hover, .activity-card:hover { transform: translateY(-6px); box-shadow: 0 20px 42px rgba(24, 60, 47, .13); }
+    .traveller-loader { display: inline-flex; align-items: center; width: 70px; overflow: hidden; vertical-align: middle; }
+    .traveller-loader::before { content: "🚶"; display: block; font-size: 23px; animation: walk-across 1.5s ease-in-out infinite; }
+    @keyframes walk-across { 0% { transform: translateX(-25px) rotate(-4deg); } 50% { transform: translateX(30px) translateY(-3px) rotate(4deg); } 100% { transform: translateX(85px) rotate(-4deg); } }
+    @media (max-width: 680px) {
+      body { background: #fbfcfa; }
+      .topbar { background: #fbfcfaef; }
+      .app-dock { border-color: #dbe5db; background: #fffffff5; }
+      .dock-button { color: var(--muted); }
+      .dock-button.active { color: var(--forest); background: #e8f0e7; }
+      .dock-button.create { color: #fff; background: var(--forest); }
+      .feed-toolbar { background: #fffffff2; }
+      .hero { margin-top: 13px; padding: 50px 20px 26px; border-radius: 22px; }
+      .hero-photo { border-radius: 20px; }
+    }
+    @media (prefers-reduced-motion: reduce) {
+      main > section, main > .shell { opacity: 1; transform: none; transition: none; }
+      .traveller-loader::before { animation: none; }
+    }
   </style>
 </head>
 <body>
@@ -922,6 +1014,17 @@
       const status = document.getElementById('chat-status');
       const history = [];
 
+      document.querySelectorAll('main > section, main > .shell').forEach((section) => section.classList.add('scroll-reveal'));
+      const revealObserver = new IntersectionObserver((entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('in-view');
+            revealObserver.unobserve(entry.target);
+          }
+        });
+      }, { threshold: .12 });
+      document.querySelectorAll('.scroll-reveal').forEach((section) => revealObserver.observe(section));
+
       function addBubble(text, role = 'assistant', extraClass = '') {
         const bubble = document.createElement('div');
         bubble.className = `chat-bubble${role === 'user' ? ' user' : ''}${extraClass ? ` ${extraClass}` : ''}`;
@@ -940,7 +1043,9 @@
         input.disabled = true;
         submit.disabled = true;
         status.textContent = 'Thinking…';
-        const pending = addBubble('Putting a mountain-minded answer together…');
+        const pending = addBubble('');
+        pending.classList.add('is-processing');
+        pending.innerHTML = '<span class="traveller-loader" aria-hidden="true"></span><span>Planning your mountain route…</span>';
 
         try {
           const response = await fetch('/api/ask', {
