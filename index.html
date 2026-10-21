@@ -24,6 +24,7 @@
     * { box-sizing: border-box; }
     html { scroll-behavior: smooth; }
     body { margin: 0; color: var(--ink); background: var(--paper); font-family: var(--sans); -webkit-font-smoothing: antialiased; }
+    .folk-band { height: 7px; background-color: var(--clay); background-image: linear-gradient(45deg, transparent 42%, #f4d5a9 43% 57%, transparent 58%), linear-gradient(-45deg, transparent 42%, #f4d5a9 43% 57%, transparent 58%); background-size: 22px 22px; opacity: .95; }
     a { color: inherit; }
     button { font: inherit; cursor: pointer; }
     .shell { width: min(1180px, calc(100% - 48px)); margin: 0 auto; }
@@ -38,6 +39,14 @@
     .nav-cta, .button { display: inline-flex; align-items: center; justify-content: center; gap: 10px; border: 0; border-radius: 999px; font-weight: 750; text-decoration: none; transition: transform .18s ease, background .18s ease; }
     .nav-cta { padding: 12px 16px; color: white; background: var(--forest); font-size: 11px; }
     .nav-cta:hover, .button:hover { transform: translateY(-2px); background: var(--clay); }
+    .nav-account { position: relative; }
+    .account-popover { position: absolute; z-index: 12; top: calc(100% + 10px); right: 0; width: 226px; padding: 9px; border: 1px solid #dedfd5; border-radius: 15px; background: #fbfaf6; box-shadow: 0 18px 40px #13281d26; }
+    .account-popover[hidden] { display: none; }
+    .account-popover-name { display: block; padding: 8px 9px 10px; color: var(--forest); font-size: 11px; font-weight: 800; }
+    .account-popover-detail { display: block; margin-top: 3px; color: var(--muted); font-size: 9px; font-weight: 500; }
+    .account-menu-button { width: 100%; padding: 10px 9px; border: 0; border-radius: 9px; color: #435348; background: transparent; text-align: left; font: inherit; font-size: 10px; font-weight: 750; }
+    .account-menu-button:hover { color: var(--forest); background: #efeee7; }
+    .account-menu-button.danger { color: #974934; }
     .hero { display: grid; grid-template-columns: .92fr 1.08fr; align-items: center; gap: 58px; padding: 63px 0 75px; }
     .eyebrow { display: inline-flex; align-items: center; gap: 9px; color: var(--clay); font-size: 10px; font-weight: 850; letter-spacing: 1.65px; text-transform: uppercase; }
     .eyebrow::before { content: ""; width: 23px; height: 1px; background: currentColor; }
@@ -258,12 +267,15 @@
     .profile-avatar img { width: 100%; height: 100%; object-fit: cover; }
     .profile-name { display: block; color: var(--forest); font-size: 13px; font-weight: 800; overflow-wrap: anywhere; }
     .profile-detail { display: block; margin-top: 4px; color: #788177; font-size: 10px; }
+    .profile-bio { margin: -4px 0 14px; color: #647066; font-size: 10px; line-height: 1.55; }
     .profile-stats { display: flex; gap: 23px; padding: 14px 0; border-top: 1px solid #d7d8cf; border-bottom: 1px solid #d7d8cf; }
     .profile-stats strong, .profile-stats span { display: block; }
     .profile-stats strong { color: var(--forest); font-size: 14px; }
     .profile-stats span { margin-top: 2px; color: #788177; font-size: 9px; }
     .join-panel .button { width: 100%; margin-top: 14px; }
     .join-panel .button[hidden] { display: none; }
+    .profile-settings-button { width: 100%; margin-top: 9px; padding: 10px 12px; border: 1px solid #cfd5ca; border-radius: 999px; color: var(--forest); background: transparent; font: inherit; font-size: 10px; font-weight: 750; }
+    .profile-settings-button:hover { border-color: var(--forest); background: #f5f5ed; }
     .account-note { margin: 12px 0 0; color: #626e64; font-size: 10px; line-height: 1.55; }
     .guideline-card { padding: 19px; }
     .guideline-card h3 { margin: 0 0 12px; font-family: var(--serif); font-size: 20px; font-weight: 500; }
@@ -370,6 +382,7 @@
   </style>
 </head>
 <body>
+  <div class="folk-band" aria-hidden="true"></div>
   <header class="shell topbar">
     <a class="brand" href="#" aria-label="Raahi home">
       <span class="brand-mark" aria-hidden="true">r</span>
@@ -381,7 +394,10 @@
       <a href="#circle">Trips</a>
       <a href="#stories">Community</a>
       <a href="#ask-raahi">AI guide</a>
-      <button class="nav-cta" type="button" id="nav-community-button">Join Raahi <span aria-hidden="true">↗</span></button>
+      <div class="nav-account">
+        <button class="nav-cta" type="button" id="nav-community-button">Join Raahi <span aria-hidden="true">↗</span></button>
+        <div class="account-popover" id="account-popover" hidden></div>
+      </div>
     </nav>
   </header>
 
@@ -490,11 +506,13 @@
                 <span class="profile-avatar" id="community-avatar" aria-hidden="true">r</span>
                 <span><strong class="profile-name" id="community-name">Browsing as a guest</strong><small class="profile-detail" id="community-detail">Join to follow and share</small></span>
               </div>
+              <p class="profile-bio" id="community-bio">Your public traveller profile starts here.</p>
               <div class="profile-stats" aria-label="Your community stats">
                 <div><strong id="followers-count">—</strong><span>followers</span></div>
                 <div><strong id="following-count">—</strong><span>following</span></div>
               </div>
               <button class="button button-dark" type="button" id="community-primary">Join the community</button>
+              <button class="profile-settings-button" type="button" id="community-settings" hidden>Edit profile &amp; settings</button>
               <button class="button button-quiet" type="button" id="community-secondary" hidden>Sign out</button>
               <p class="account-note" id="account-note">Free to join. Your email stays private; your profile name, posts and photos are public.</p>
             </section>
@@ -517,6 +535,7 @@
               <button class="filter-chip" type="button" data-feed-filter="experience" aria-pressed="false">Experiences</button>
               <button class="filter-chip" type="button" data-feed-filter="destination" aria-pressed="false">Place tips</button>
               <button class="filter-chip" type="button" data-feed-filter="photo" aria-pressed="false">Photos</button>
+              <button class="filter-chip" type="button" data-feed-filter="blog" aria-pressed="false">Blogs</button>
               <button class="filter-chip" type="button" data-feed-filter="gear" aria-pressed="false">Gear</button>
               <button class="filter-chip" type="button" data-feed-filter="idea" aria-pressed="false">Trip ideas</button>
             </div>
@@ -618,6 +637,7 @@
             <option value="experience">My experience</option>
             <option value="destination">Place recommendation</option>
             <option value="photo">Photo diary</option>
+            <option value="blog">Trail blog</option>
             <option value="gear">Gear tip</option>
             <option value="idea">Trip idea</option>
           </select>
@@ -640,6 +660,31 @@
         <button class="button button-dark" id="post-submit" type="submit">Publish story</button>
       </form>
       <p class="public-post-note">Posts are public. Do not include private phone numbers, exact live locations or other sensitive details.</p>
+    </div>
+  </dialog>
+  <dialog class="site-dialog" id="profile-dialog" aria-labelledby="profile-title">
+    <div class="dialog-card">
+      <button class="dialog-close" type="button" data-close-dialog aria-label="Close">×</button>
+      <span class="dialog-eyebrow">Your traveller card</span>
+      <h2 id="profile-title">Make your profile yours.</h2>
+      <p class="dialog-intro">These details appear on your public Raahi profile. Never add a phone number, home address or live location.</p>
+      <form class="dialog-form" id="profile-form">
+        <label class="dialog-field" for="profile-display-name">Profile name
+          <input id="profile-display-name" name="display_name" type="text" minlength="2" maxlength="60" required>
+        </label>
+        <label class="dialog-field" for="profile-home-base">Home base or favourite region
+          <input id="profile-home-base" name="home_base" type="text" maxlength="80" placeholder="e.g. Delhi · often in Himachal">
+        </label>
+        <label class="dialog-field" for="profile-travel-style">Travel style
+          <input id="profile-travel-style" name="travel_style" type="text" maxlength="80" placeholder="e.g. Solo treks · slow travel · photography">
+        </label>
+        <label class="dialog-field" for="profile-bio-input">About your travels
+          <textarea id="profile-bio-input" name="bio" maxlength="240" rows="4" placeholder="A short public introduction for fellow travellers."></textarea>
+          <small><span id="profile-char-count">0</span>/240 characters</small>
+        </label>
+        <p class="dialog-status" id="profile-status" role="status" aria-live="polite"></p>
+        <button class="button button-dark" id="profile-submit" type="submit">Save profile</button>
+      </form>
     </div>
   </dialog>
   <dialog class="site-dialog" id="report-dialog" aria-labelledby="report-title">

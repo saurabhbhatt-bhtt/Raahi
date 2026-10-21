@@ -13,9 +13,11 @@ const postsRoot = $('#community-posts');
 const feedStatus = $('#feed-status');
 const authDialog = $('#auth-dialog');
 const postDialog = $('#post-dialog');
+const profileDialog = $('#profile-dialog');
 const reportDialog = $('#report-dialog');
 const authForm = $('#auth-form');
 const postForm = $('#post-form');
+const profileForm = $('#profile-form');
 const reportForm = $('#report-form');
 
 let currentUser = null;
@@ -82,6 +84,45 @@ function openPostDialog() {
   setTimeout(() => $('#post-category')?.focus(), 20);
 }
 
+function openProfileDialog() {
+  if (!currentUser) return openAuth('signup');
+  const profile = currentProfile || {};
+  $('#profile-display-name').value = profile.display_name || currentUser.user_metadata?.display_name || '';
+  $('#profile-home-base').value = profile.home_base || '';
+  $('#profile-travel-style').value = profile.travel_style || '';
+  $('#profile-bio-input').value = profile.bio || '';
+  $('#profile-char-count').textContent = String($('#profile-bio-input').value.length);
+  setStatus($('#profile-status'), '');
+  openDialog(profileDialog);
+  setTimeout(() => $('#profile-display-name')?.focus(), 20);
+}
+
+function renderAccountMenu() {
+  const menu = $('#account-popover');
+  if (!menu) return;
+  menu.replaceChildren();
+  if (!currentUser) return;
+  const name = currentProfile?.display_name || currentUser.user_metadata?.display_name || 'Traveller';
+  const heading = node('span', 'account-popover-name', name);
+  heading.append(node('span', 'account-popover-detail', 'Your Raahi account'));
+  const profileButton = node('button', 'account-menu-button', 'Edit profile & settings');
+  profileButton.type = 'button';
+  profileButton.addEventListener('click', () => { menu.hidden = true; openProfileDialog(); });
+  const storyButton = node('button', 'account-menu-button', 'Write a post or blog');
+  storyButton.type = 'button';
+  storyButton.addEventListener('click', () => { menu.hidden = true; openPostDialog(); });
+  const signoutButton = node('button', 'account-menu-button danger', 'Sign out');
+  signoutButton.type = 'button';
+  signoutButton.addEventListener('click', signOut);
+  menu.append(heading, profileButton, storyButton, signoutButton);
+}
+
+async function signOut() {
+  const { error } = await supabase.auth.signOut();
+  if (error) window.alert(friendlyError(error));
+  $('#account-popover').hidden = true;
+}
+
 function setAuthMode(mode) {
   authMode = mode;
   const signingUp = mode === 'signup';
@@ -108,6 +149,7 @@ function categoryName(category) {
     experience: 'Experience',
     destination: 'Place recommendation',
     photo: 'Photo diary',
+    blog: 'Trail blog',
     gear: 'Gear tip',
     idea: 'Trip idea'
   })[category] || 'Traveller story';
@@ -139,6 +181,8 @@ function setCommunitySummary() {
   const secondary = $('#community-secondary');
   const detail = $('#community-detail');
   const navAction = $('#nav-community-button');
+  const settingsButton = $('#community-settings');
+  const bio = $('#community-bio');
   navAction.replaceChildren(document.createTextNode(currentUser ? 'Share a story ' : 'Join Raahi '));
   const navArrow = node('span', '', '↗');
   navArrow.setAttribute('aria-hidden', 'true');
@@ -152,13 +196,16 @@ function setCommunitySummary() {
     primary.textContent = 'Join the community';
     primary.className = 'button button-dark';
     secondary.hidden = true;
+    settingsButton.hidden = true;
+    bio.textContent = 'Browse mountain stories freely. Join when you want to post, follow or comment.';
     $('#account-note').textContent = 'Free to join. Your email stays private; your profile name, posts and photos are public.';
     return;
   }
 
   const displayName = currentProfile?.display_name || currentUser.user_metadata?.display_name || 'Traveller';
   $('#community-name').textContent = displayName;
-  detail.textContent = 'Raahi traveller';
+  detail.textContent = [currentProfile?.home_base, currentProfile?.travel_style].filter(Boolean).join(' · ') || 'Raahi traveller';
+  bio.textContent = currentProfile?.bio || 'Add a short traveller bio, favourite region and travel style.';
   const avatar = $('#community-avatar');
   if (avatar) {
     const nextAvatar = makeAvatar(currentProfile || { display_name: displayName }, 'profile-avatar');
@@ -169,6 +216,7 @@ function setCommunitySummary() {
   $('#following-count').textContent = '…';
   primary.textContent = '＋ Share a story';
   secondary.hidden = false;
+  settingsButton.hidden = false;
   $('#account-note').textContent = 'Your email is private. Public posts and photos can be seen by anyone.';
 }
 
@@ -188,16 +236,18 @@ async function loadViewer() {
     likedPostIds = new Set();
     followingIds = new Set();
     setCommunitySummary();
+    renderAccountMenu();
     return;
   }
   const { data, error } = await supabase
     .from('profiles')
-    .select('id,display_name,avatar_url')
+    .select('id,display_name,avatar_url,bio,home_base,travel_style')
     .eq('id', currentUser.id)
     .maybeSingle();
   if (error) throw error;
   currentProfile = data || { id: currentUser.id, display_name: currentUser.user_metadata?.display_name || 'Traveller' };
   setCommunitySummary();
+  renderAccountMenu();
   await loadProfileStats();
 }
 
@@ -517,6 +567,36 @@ async function createPost(event) {
   }
 }
 
+async function saveProfile(event) {
+  event.preventDefault();
+  if (!currentUser) return openAuth('signup');
+  const submit = $('#profile-submit');
+  const values = new FormData(profileForm);
+  submit.disabled = true;
+  submit.textContent = 'Saving…';
+  setStatus($('#profile-status'), 'Saving your public traveller profile…');
+  try {
+    const updates = {
+      display_name: String(values.get('display_name') || '').trim(),
+      home_base: String(values.get('home_base') || '').trim() || null,
+      travel_style: String(values.get('travel_style') || '').trim() || null,
+      bio: String(values.get('bio') || '').trim() || null
+    };
+    const { error } = await supabase.from('profiles').update(updates).eq('id', currentUser.id);
+    if (error) throw error;
+    currentProfile = { ...(currentProfile || {}), ...updates, id: currentUser.id };
+    setCommunitySummary();
+    renderAccountMenu();
+    profileDialog.close();
+    await refreshFeed();
+  } catch (error) {
+    setStatus($('#profile-status'), friendlyError(error), true);
+  } finally {
+    submit.disabled = false;
+    submit.textContent = 'Save profile';
+  }
+}
+
 async function submitAuth(event) {
   event.preventDefault();
   const submit = $('#auth-submit');
@@ -590,25 +670,31 @@ async function submitReport(event) {
 }
 
 function attachEvents() {
-  $('#nav-community-button').addEventListener('click', () => openAuth('signup'));
-  $('#community-primary').addEventListener('click', () => currentUser ? openPostDialog() : openAuth('signup'));
-  $('#community-secondary').addEventListener('click', async () => {
-    const { error } = await supabase.auth.signOut();
-    if (error) window.alert(friendlyError(error));
+  $('#nav-community-button').addEventListener('click', () => {
+    if (!currentUser) return openAuth('signup');
+    const menu = $('#account-popover');
+    menu.hidden = !menu.hidden;
   });
+  $('#community-primary').addEventListener('click', () => currentUser ? openPostDialog() : openAuth('signup'));
+  $('#community-secondary').addEventListener('click', signOut);
+  $('#community-settings').addEventListener('click', openProfileDialog);
   $('#create-post-button').addEventListener('click', openPostDialog);
   $$('[data-auth-mode]').forEach((button) => button.addEventListener('click', () => setAuthMode(button.dataset.authMode)));
   $$('[data-close-dialog]').forEach((button) => button.addEventListener('click', () => button.closest('dialog').close()));
-  [authDialog, postDialog, reportDialog].forEach((dialog) => {
+  [authDialog, postDialog, profileDialog, reportDialog].forEach((dialog) => {
     dialog.addEventListener('click', (event) => {
       if (event.target === dialog) dialog.close();
     });
   });
   authForm.addEventListener('submit', submitAuth);
   postForm.addEventListener('submit', createPost);
+  profileForm.addEventListener('submit', saveProfile);
   reportForm.addEventListener('submit', submitReport);
   $('#post-body').addEventListener('input', (event) => {
     $('#post-char-count').textContent = String(event.target.value.length);
+  });
+  $('#profile-bio-input').addEventListener('input', (event) => {
+    $('#profile-char-count').textContent = String(event.target.value.length);
   });
   $$('[data-feed-filter]').forEach((button) => button.addEventListener('click', () => {
     activeFilter = button.dataset.feedFilter;
@@ -640,6 +726,10 @@ supabase.auth.getSession().then(async ({ data, error }) => {
   currentUser = data.session?.user || null;
   await loadViewer();
   await refreshFeed();
+  if (!currentUser && !window.sessionStorage.getItem('raahi-welcome-seen')) {
+    window.sessionStorage.setItem('raahi-welcome-seen', 'true');
+    window.setTimeout(() => openAuth('signup'), 500);
+  }
 }).catch((error) => {
   feedStatus.textContent = friendlyError(error);
   postsRoot.replaceChildren(emptyFeed('The community feed could not load.', 'Please refresh the page and try again.'));
