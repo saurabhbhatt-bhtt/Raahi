@@ -678,6 +678,8 @@ function attachEvents() {
   $('#community-primary').addEventListener('click', () => currentUser ? openPostDialog() : openAuth('signup'));
   $('#community-secondary').addEventListener('click', signOut);
   $('#community-settings').addEventListener('click', openProfileDialog);
+  $('#dock-create').addEventListener('click', openPostDialog);
+  $('#dock-profile').addEventListener('click', () => currentUser ? openProfileDialog() : openAuth('signup'));
   $('#create-post-button').addEventListener('click', openPostDialog);
   $$('[data-auth-mode]').forEach((button) => button.addEventListener('click', () => setAuthMode(button.dataset.authMode)));
   $$('[data-close-dialog]').forEach((button) => button.addEventListener('click', () => button.closest('dialog').close()));

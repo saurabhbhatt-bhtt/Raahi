@@ -379,6 +379,78 @@
       .post-composer { align-items: stretch; flex-direction: column; }
       .post-composer .button { width: 100%; }
     }
+
+    /* Raahi Circle: mobile social-first layer */
+    .app-dock { display: none; }
+    .hero { position: relative; }
+    .hero::before { content: "HIMACHAL · UTTARAKHAND · MOUNTAIN PEOPLE"; position: absolute; top: 11px; left: 0; color: var(--clay); font-size: 8px; font-weight: 850; letter-spacing: 1.7px; }
+    .hero-copy { max-width: 500px; }
+    .community-header { padding: 26px; border: 1px solid #ded8ca; border-radius: 24px; background: linear-gradient(135deg, #f8f0de, #e5ebdc); }
+    .community-header::after { content: "✳  ✦  ✳"; display: block; margin-top: 17px; color: var(--clay); font-size: 14px; letter-spacing: 13px; }
+    .social-layout { position: relative; }
+    .join-panel { border-color: #cbd3bd; background: linear-gradient(160deg, #e5eadb, #f8f4e8); }
+    .feed-toolbar { border-color: #cbd3bd; background: #fbfaf6; }
+    .feed-title::before { content: "● "; color: var(--clay); }
+    .feed-post { border-color: #d8d8cd; box-shadow: 0 5px 18px #1b29230a; }
+    .post-category { background: #f5e7d4; }
+    @media (max-width: 680px) {
+      body { padding-bottom: 74px; background: #f4f0e7; }
+      .folk-band { height: 5px; }
+      .topbar { position: sticky; z-index: 10; top: 0; height: 65px; background: #f4f0e7eb; backdrop-filter: blur(16px); }
+      .brand-mark { width: 34px; height: 34px; }
+      .brand-sub { display: none; }
+      .nav { gap: 0; }
+      .nav a { display: none; }
+      .nav-cta { min-width: 43px; padding: 10px 12px; font-size: 0; }
+      .nav-cta span { font-size: 17px; }
+      .hero { gap: 22px; padding: 52px 0 38px; }
+      .hero::before { top: 21px; }
+      .hero .eyebrow { display: none; }
+      h1 { margin-top: 5px; font-size: clamp(48px, 13vw, 64px); line-height: .91; }
+      .hero-copy { max-width: 355px; font-size: 12px; line-height: 1.72; }
+      .hero-actions { display: grid; grid-template-columns: 1fr 1fr; margin-top: 22px; }
+      .hero-actions .button { min-height: 48px; padding: 10px; text-align: center; }
+      .hero-small { margin-top: 20px; }
+      .hero-visual { min-height: 270px; }
+      .hero-photo { right: 0; bottom: 0; border-radius: 28px 28px 10px 10px; }
+      .floating-note { right: 10px; bottom: 12px; width: 150px; border-radius: 13px; }
+      .ticker { display: none; }
+      .section { padding: 46px 0; }
+      .community-header { margin: 0 -2px 17px; padding: 20px 18px; border-radius: 20px; }
+      .community-header h2 { font-size: 37px; }
+      .community-header p { font-size: 11px; }
+      .community-live { font-size: 9px; }
+      .social-aside { display: block; }
+      .guideline-card { display: none; }
+      .join-panel { padding: 16px; border-radius: 18px; }
+      .profile-row { margin: 12px 0; }
+      .profile-stats { justify-content: space-around; padding: 12px 0; }
+      .profile-stats > div { min-width: 72px; text-align: center; }
+      .join-panel .button, .profile-settings-button { display: inline-flex; width: auto; margin: 11px 6px 0 0; padding: 10px 13px; }
+      .join-panel .button-quiet { border-radius: 999px; }
+      .account-note { margin-top: 11px; }
+      .feed-column { margin-top: 14px; }
+      .feed-toolbar { position: sticky; z-index: 6; top: 64px; padding: 12px; border-radius: 16px; box-shadow: 0 7px 15px #1b29230c; }
+      .feed-toolbar .button { min-height: 39px; padding: 9px 11px; }
+      .feed-filters { margin: 11px -16px; padding: 0 16px 5px; }
+      .filter-chip { min-height: 34px; }
+      .post-list { gap: 9px; }
+      .feed-post { border-radius: 17px; }
+      .post-content h3 { font-size: 23px; }
+      .post-body { font-size: 11px; line-height: 1.7; }
+      .assistant-section { background: #193e33; color: #f8f3e6; }
+      .assistant-copy p, .assistant-disclaimer { color: #ccd7c9; }
+      .assistant-copy .eyebrow { color: #e9ae6f; }
+      .shop-section, .final-cta, footer { display: none; }
+      .app-dock { position: fixed; z-index: 30; right: 11px; bottom: max(9px, env(safe-area-inset-bottom)); left: 11px; display: grid; grid-template-columns: repeat(5, 1fr); padding: 7px; border: 1px solid #ffffff52; border-radius: 22px; background: #173b30f5; box-shadow: 0 12px 35px #13241c4d; backdrop-filter: blur(14px); }
+      .dock-button { display: grid; place-items: center; gap: 3px; min-height: 48px; border: 0; border-radius: 15px; color: #dce5d6; background: transparent; font: inherit; font-size: 8px; font-weight: 750; }
+      .dock-button span { font-size: 18px; line-height: 1; }
+      .dock-button.active, .dock-button:hover { color: #fff; background: #ffffff1d; }
+      .dock-button.create { color: #173b30; background: #f0b879; }
+      .dock-button.create:hover { background: #f7c78f; }
+      .site-dialog { margin: auto; }
+      .dialog-card { border-radius: 22px 22px 12px 12px; }
+    }
   </style>
 </head>
 <body>
@@ -598,12 +670,19 @@
       <p class="photo-credits">Regional preview photography via Unsplash: <a href="https://unsplash.com/photos/trees-on-mountain-W5V4qKHaOXU" target="_blank" rel="noopener noreferrer">Nomad Bikers · Kinnaur</a>, <a href="https://unsplash.com/photos/a-small-village-nestled-on-the-side-of-a-mountain-ZtSwHe079vo" target="_blank" rel="noopener noreferrer">Harish Bharti · Bhanera</a>, <a href="https://unsplash.com/photos/houses-nestled-on-a-mountain-with-pine-trees-iHpnEKsrGD4" target="_blank" rel="noopener noreferrer">Atharva Dixit · Kufri</a>, <a href="https://unsplash.com/photos/a-small-village-in-the-middle-of-a-mountain-range-9aWPQGcWnRo" target="_blank" rel="noopener noreferrer">Rowan Heuvel · Dhankar</a>, <a href="https://unsplash.com/photos/a-man-with-a-backpack-walking-up-a-hill-x7xyMAb7onc" target="_blank" rel="noopener noreferrer">Slava Auchynnikau · Himalayas</a>. Images are inspiration, not images of partner stays.</p>
     </div>
   </footer>
+  <nav class="app-dock" aria-label="Raahi mobile navigation">
+    <a class="dock-button active" href="#" aria-label="Raahi home"><span aria-hidden="true">⌂</span>Home</a>
+    <a class="dock-button" href="#adventures"><span aria-hidden="true">⌖</span>Explore</a>
+    <button class="dock-button create" id="dock-create" type="button"><span aria-hidden="true">＋</span>Post</button>
+    <a class="dock-button" href="#stories"><span aria-hidden="true">◌</span>Circle</a>
+    <button class="dock-button" id="dock-profile" type="button"><span aria-hidden="true">◉</span>Profile</button>
+  </nav>
   <dialog class="site-dialog" id="auth-dialog" aria-labelledby="auth-title">
     <div class="dialog-card">
       <button class="dialog-close" type="button" data-close-dialog aria-label="Close">×</button>
       <span class="dialog-eyebrow">A place in the circle</span>
       <h2 id="auth-title">Join the Raahi community.</h2>
-      <p class="dialog-intro">Create a free traveller profile to share stories, post photos, follow people and join the conversation.</p>
+      <p class="dialog-intro">Join to post, write blogs, follow mountain people and build your traveller card. You can close this and explore Raahi freely first.</p>
       <div class="auth-switch" role="group" aria-label="Account action">
         <button type="button" data-auth-mode="signup" aria-pressed="true">Create account</button>
         <button type="button" data-auth-mode="signin" aria-pressed="false">Sign in</button>
