@@ -14,6 +14,7 @@ const feedStatus = $('#feed-status');
 const authDialog = $('#auth-dialog');
 const postDialog = $('#post-dialog');
 const profileDialog = $('#profile-dialog');
+const publicProfileDialog = $('#public-profile-dialog');
 const reportDialog = $('#report-dialog');
 const authForm = $('#auth-form');
 const postForm = $('#post-form');
@@ -282,10 +283,15 @@ function renderPost(post) {
   const displayName = profile.display_name || 'Traveller';
   const article = node('article', 'feed-post');
   const header = node('div', 'feed-post-head');
-  header.append(makeAvatar(profile));
+  const authorButton = node('button', 'post-author');
+  authorButton.type = 'button';
+  authorButton.setAttribute('aria-label', `Open ${displayName}'s traveller profile`);
+  authorButton.addEventListener('click', () => openPublicProfile(post.author_id, profile));
+  authorButton.append(makeAvatar(profile));
   const byline = node('div', 'post-byline');
   byline.append(node('strong', '', displayName), node('span', '', formattedDate(post.created_at)));
-  header.append(byline);
+  authorButton.append(byline);
+  header.append(authorButton);
   const headActions = node('div', 'post-head-actions');
 
   if (currentUser && currentUser.id !== post.author_id) {
@@ -352,6 +358,51 @@ function renderPost(post) {
   actions.append(likeButton, commentButton);
   article.append(actions, panel);
   return article;
+}
+
+async function openPublicProfile(authorId, postProfile = {}) {
+  const content = $('#public-profile-content');
+  content.replaceChildren(node('p', 'dialog-intro', 'Loading this traveller’s profile…'));
+  openDialog(publicProfileDialog);
+  try {
+    const [profileResult, followerResult, postResult] = await Promise.all([
+      supabase.from('profiles').select('id,display_name,avatar_url,bio,home_base,travel_style').eq('id', authorId).maybeSingle(),
+      supabase.from('follows').select('follower_id', { count: 'exact', head: true }).eq('following_id', authorId),
+      supabase.from('posts').select('id,category,destination,title,created_at').eq('author_id', authorId).order('created_at', { ascending: false }).limit(4)
+    ]);
+    if (profileResult.error) throw profileResult.error;
+    if (followerResult.error) throw followerResult.error;
+    if (postResult.error) throw postResult.error;
+    const profile = profileResult.data || postProfile || {};
+    const name = profile.display_name || 'Traveller';
+    const head = node('div', 'public-profile-head');
+    head.append(makeAvatar(profile));
+    const identity = node('div');
+    identity.append(node('h2', '', name));
+    identity.append(node('p', '', [profile.home_base, profile.travel_style].filter(Boolean).join(' · ') || 'Raahi traveller'));
+    head.append(identity);
+    const bio = node('p', 'public-profile-bio', profile.bio || 'This traveller has not added a bio yet.');
+    const stats = node('div', 'public-profile-stats');
+    const followers = node('span');
+    followers.append(node('strong', '', String(followerResult.count ?? 0)), document.createTextNode('followers'));
+    const stories = node('span');
+    stories.append(node('strong', '', String(postResult.data?.length ?? 0)), document.createTextNode('recent stories'));
+    stats.append(followers, stories);
+    const storyList = node('div', 'public-profile-stories');
+    const entries = postResult.data || [];
+    if (entries.length) {
+      entries.forEach((story) => {
+        const card = node('article', 'public-story');
+        card.append(node('span', '', categoryName(story.category)), node('h3', '', story.title), node('p', '', `⌖ ${story.destination}`));
+        storyList.append(card);
+      });
+    } else {
+      storyList.append(node('p', 'dialog-intro', 'No public stories from this traveller yet.'));
+    }
+    content.replaceChildren(head, bio, stats, storyList);
+  } catch (error) {
+    content.replaceChildren(node('p', 'dialog-intro error', friendlyError(error)));
+  }
 }
 
 async function refreshFeed() {
@@ -683,7 +734,7 @@ function attachEvents() {
   $('#create-post-button').addEventListener('click', openPostDialog);
   $$('[data-auth-mode]').forEach((button) => button.addEventListener('click', () => setAuthMode(button.dataset.authMode)));
   $$('[data-close-dialog]').forEach((button) => button.addEventListener('click', () => button.closest('dialog').close()));
-  [authDialog, postDialog, profileDialog, reportDialog].forEach((dialog) => {
+  [authDialog, postDialog, profileDialog, publicProfileDialog, reportDialog].forEach((dialog) => {
     dialog.addEventListener('click', (event) => {
       if (event.target === dialog) dialog.close();
     });

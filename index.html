@@ -643,6 +643,20 @@
     .account-popover-name { color: var(--forest); }
     .account-menu-button { color: var(--forest); }
     .account-menu-button:hover { color: #fff; background: var(--forest); }
+    .post-author { display: flex; flex: 1; align-items: center; min-width: 0; gap: 10px; padding: 0; border: 0; color: inherit; background: transparent; text-align: left; font: inherit; cursor: pointer; }
+    .post-author:hover .post-byline strong { text-decoration: underline; text-underline-offset: 3px; }
+    .public-profile-head { display: flex; align-items: center; gap: 14px; padding-bottom: 17px; border-bottom: 1px solid var(--line); }
+    .public-profile-head .profile-avatar { width: 52px; height: 52px; flex: 0 0 52px; font-size: 18px; }
+    .public-profile-head h2 { margin: 0; font-size: 25px; }
+    .public-profile-head p { margin: 3px 0 0; color: var(--muted); font-size: 13px; }
+    .public-profile-bio { margin: 16px 0; color: var(--muted); line-height: 1.65; }
+    .public-profile-stats { display: flex; gap: 18px; padding: 13px 0; border-top: 1px solid var(--line); border-bottom: 1px solid var(--line); color: var(--muted); font-size: 12px; }
+    .public-profile-stats strong { display: block; color: var(--forest); font-size: 16px; }
+    .public-profile-stories { display: grid; gap: 10px; margin-top: 17px; }
+    .public-story { padding: 12px; border: 1px solid var(--line); border-radius: 12px; background: #f8faf7; }
+    .public-story span { color: var(--clay); font-size: 10px; font-weight: 800; letter-spacing: .6px; text-transform: uppercase; }
+    .public-story h3 { margin: 4px 0; color: var(--forest); font-size: 14px; }
+    .public-story p { margin: 0; color: var(--muted); font-size: 12px; }
 
     /* Gentle entrance motion while the visitor explores sections. */
     main > section, main > .shell { opacity: 0; transform: translateY(28px); transition: opacity .75s ease, transform .75s cubic-bezier(.2,.72,.2,1); }
@@ -980,6 +994,13 @@
         <p class="dialog-status" id="profile-status" role="status" aria-live="polite"></p>
         <button class="button button-dark" id="profile-submit" type="submit">Save profile</button>
       </form>
+    </div>
+  </dialog>
+  <dialog class="site-dialog" id="public-profile-dialog" aria-labelledby="public-profile-title">
+    <div class="dialog-card">
+      <button class="dialog-close" type="button" data-close-dialog aria-label="Close">×</button>
+      <span class="dialog-eyebrow">Traveller profile</span>
+      <div id="public-profile-content" aria-live="polite"></div>
     </div>
   </dialog>
   <dialog class="site-dialog" id="report-dialog" aria-labelledby="report-title">
