@@ -451,6 +451,45 @@
       .site-dialog { margin: auto; }
       .dialog-card { border-radius: 22px 22px 12px 12px; }
     }
+
+    /* Nature and pahadi textile identity */
+    body {
+      background-color: #edf0e5;
+      background-image:
+        radial-gradient(circle at 8% 7%, #f5d8a857 0 2px, transparent 3px),
+        radial-gradient(circle at 93% 24%, #7b987350 0 2px, transparent 3px),
+        linear-gradient(135deg, #edf0e5 0%, #f5f0e4 45%, #e5ecdc 100%);
+      background-size: 34px 34px, 42px 42px, auto;
+    }
+    .topbar { position: relative; }
+    .topbar::after { content: ""; position: absolute; right: 0; bottom: -1px; left: 0; height: 4px; background: repeating-linear-gradient(45deg, var(--clay) 0 7px, #eab475 7px 14px, var(--forest) 14px 21px, #9bad7a 21px 28px); opacity: .82; }
+    .hero { isolation: isolate; margin-top: 25px; padding: 58px 48px 65px; overflow: hidden; border: 1px solid #cfdbca; border-radius: 32px; background: linear-gradient(130deg, #f9f0dd 0%, #e1eddc 53%, #bdcfb6 100%); box-shadow: 0 20px 55px #263f2a1a; }
+    .hero::after { content: "✦  ◆  ✦  ◆  ✦"; position: absolute; z-index: -1; right: -46px; top: 22px; color: #c76e4d2b; font-size: 62px; letter-spacing: 11px; transform: rotate(17deg); }
+    .hero-visual::before { content: ""; position: absolute; z-index: 3; top: 25px; left: -16px; width: 115px; height: 52px; background: repeating-linear-gradient(45deg, #e8ae706f 0 9px, transparent 9px 18px), repeating-linear-gradient(-45deg, #244d4059 0 9px, transparent 9px 18px); clip-path: polygon(50% 0, 100% 50%, 50% 100%, 0 50%); }
+    .hero-photo { box-shadow: 14px 15px 0 #c06d4a; }
+    .hero-photo::before { content: ""; position: absolute; z-index: 2; right: 0; top: 0; width: 90px; height: 90px; background: linear-gradient(45deg, transparent 43%, #f6ce935e 44% 56%, transparent 57%), linear-gradient(-45deg, transparent 43%, #f6ce935e 44% 56%, transparent 57%); background-size: 28px 28px; }
+    .ticker { color: #f7f1e5; background: var(--forest); border: 0; }
+    .ticker b { color: #f1bb7d; }
+    .section-head h2, .community-header h2 { color: #193e33; }
+    .region-card { border-color: #c8d2c2; background: #fffdf7; box-shadow: 0 11px 25px #1c35200e; }
+    .region-image::before { content: ""; position: absolute; z-index: 2; top: 10px; right: 10px; width: 39px; height: 39px; border: 1px solid #fff9; border-radius: 50%; background: repeating-conic-gradient(#f3d097 0deg 20deg, transparent 20deg 40deg); }
+    .activity-section { position: relative; overflow: hidden; background: linear-gradient(135deg, #dce8d6, #f0e6d4); }
+    .activity-section::before { content: ""; position: absolute; top: -75px; right: -58px; width: 235px; height: 235px; border: 28px solid #c66b4c24; border-radius: 50%; box-shadow: 0 0 0 24px #758a6224, 0 0 0 48px #e9ae6f20; }
+    .activity-card { position: relative; overflow: hidden; border-color: #c7d2c1; background: #fbf8ee; }
+    .activity-card::after { content: ""; position: absolute; right: -22px; bottom: -26px; width: 79px; height: 79px; background: repeating-conic-gradient(#c66b4c2b 0deg 25deg, transparent 25deg 50deg); border-radius: 50%; }
+    .trip-section { background: linear-gradient(145deg, #153a31 0%, #285844 58%, #42684e 100%); }
+    .community-header { border-color: #c3d1b7; background: linear-gradient(120deg, #f7e9d4 0%, #e3eddc 62%, #d5e2c9 100%); }
+    .community-header::before { content: "༄  पहाड़ों के लिए  ༄"; display: block; margin-bottom: 9px; color: #a6543d; font-size: 11px; font-weight: 850; letter-spacing: 1px; }
+    .join-panel { background: linear-gradient(160deg, #f4e6d2, #e7f0df); }
+    .feed-post { border-left: 4px solid #c66b4c; }
+    .chat-panel { border-color: #b9ccb9; }
+    @media (max-width: 680px) {
+      .hero { margin-top: 13px; padding: 50px 20px 26px; border-radius: 25px; }
+      .hero::after { right: -50px; top: 34px; font-size: 45px; }
+      .hero-photo { box-shadow: 8px 9px 0 #c06d4a; }
+      .activity-section { margin-top: 0; }
+      .community-header::before { font-size: 9px; }
+    }
   </style>
 </head>
 <body>
